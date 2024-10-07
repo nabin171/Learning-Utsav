@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Methods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        .box {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e2e2e2;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Selection Methods</h1>
+
+    <h2>1. getElementById</h2>
+    <div id="idExample" class="box">Hello, World!</div>
+    <button id="changeIdButton">Change Text (getElementById)</button>
+
+    <h2>2. getElementsByClassName</h2>
+    <div class="classExample box">Box 1</div>
+    <div class="classExample box">Box 2</div>
+    <div class="classExample box">Box 3</div>
+    <button id="changeClassButton">Change Box Colors (getElementsByClassName)</button>
+
+    <h2>3. getElementsByTagName</h2>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <button id="highlightParagraphsButton">Highlight Paragraphs (getElementsByTagName)</button>
+
+    <h2>4. querySelector</h2>
+    <div class="queryExample box">This is a header</div>
+    <button id="changeQueryButton">Change Header Text (querySelector)</button>
+
+    <h2>5. querySelectorAll</h2>
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+    <button id="hideItemsButton">Hide Items (querySelectorAll)</button>
+
+    <script>
+        // 1. getElementById
+        const idExample = document.getElementById('idExample');
+        document.getElementById('changeIdButton').addEventListener('click', () => {
+            idExample.textContent = 'Text Changed!';
+        });
+
+        // 2. getElementsByClassName
+        const classBoxes = document.getElementsByClassName('classExample');
+        document.getElementById('changeClassButton').addEventListener('click', () => {
+            for (let box of classBoxes) {
+                box.style.backgroundColor = 'lightblue';
+            }
+        });
+
+        // 3. getElementsByTagName
+        const paragraphs = document.getElementsByTagName('p');
+        document.getElementById('highlightParagraphsButton').addEventListener('click', () => {
+            for (let paragraph of paragraphs) {
+                paragraph.style.color = 'orange';
+            }
+        });
+
+        // 4. querySelector
+        const queryHeader = document.querySelector('.queryExample');
+        document.getElementById('changeQueryButton').addEventListener('click', () => {
+            queryHeader.textContent = 'Header Changed!';
+        });
+
+        // 5. querySelectorAll
+        const items = document.querySelectorAll('.item');
+        document.getElementById('hideItemsButton').addEventListener('click', () => {
+            items.forEach(item => {
+                item.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

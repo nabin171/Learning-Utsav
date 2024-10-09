@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Utsav - Nepali Users Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .user-container {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Learning Utsav - Nepali Users Data (Promises & Async/Await)</h1>
+
+  <div class="user-container">
+    <h2>User Data Using Promises</h2>
+    <div id="userDataPromises"></div>
+  </div>
+
+  <div class="user-container">
+    <h2>User Data Using Async/Await</h2>
+    <div id="userDataAsyncAwait"></div>
+  </div>
+
+  <script>
+    // Fetch data using Promises and modify it
+    function fetchUserDataWithPromises() {
+      // Simulating Nepali user data
+      const user = {
+        name: 'Ram Bahadur Thapa',
+        email: 'ram.thapa@example.com',
+        address: 'Kathmandu, Bagmati Province, Nepal'
+      };
+
+      document.getElementById('userDataPromises').innerHTML = `
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Address:</strong> ${user.address}</p>
+      `;
+    }
+
+    // Fetch data using Async/Await and modify it
+    async function fetchUserDataWithAsyncAwait() {
+      // Simulating Nepali user data
+      const user = {
+        name: 'Sita Rai',
+        email: 'sita.rai@example.com',
+        address: 'Pokhara, Gandaki Province, Nepal'
+      };
+
+      document.getElementById('userDataAsyncAwait').innerHTML = `
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Address:</strong> ${user.address}</p>
+      `;
+    }
+
+    // Call both functions
+    fetchUserDataWithPromises();  // Fetch using Promises
+    fetchUserDataWithAsyncAwait();  // Fetch using Async/Await
+  </script>
+</body>
+</html>

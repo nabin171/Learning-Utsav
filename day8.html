@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Utsav - Promise Handling (then, catch, finally)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .user-data, .error-message {
+      background-color: #fff;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .loading {
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Learning Utsav - Promise Handling (then, catch, finally)</h1>
+    <div id="loadingMessage" class="loading">Loading user data...</div>
+    <div id="userData" class="user-data"></div>
+    <div id="errorMessage" class="error-message" style="display: none; color: red;"></div>
+  </div>
+
+  <script>
+    // Simulate a function to fetch user data
+    function fetchUserData() {
+      return new Promise((resolve, reject) => {
+        const success = true; // Change this to false to simulate an error
+
+        setTimeout(() => {
+          if (success) {
+            resolve({
+              name: 'Hari Bahadur Khatri',
+              email: 'hari.khatri@example.com',
+              address: 'Bharatpur, Chitwan, Nepal'
+            });
+          } else {
+            reject('Failed to fetch user data');
+          }
+        }, 2000); // Simulate network delay
+      });
+    }
+
+    // Fetch data and handle using .then(), .catch(), and .finally()
+    fetchUserData()
+      .then(user => {
+        document.getElementById('userData').innerHTML = `
+          <p><strong>Name:</strong> ${user.name}</p>
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>Address:</strong> ${user.address}</p>
+        `;
+      })
+      .catch(error => {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('errorMessage').textContent = error;
+      })
+      .finally(() => {
+        document.getElementById('loadingMessage').style.display = 'none';
+      });
+  </script>
+
+</body>
+</html>

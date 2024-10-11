@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Utsav - Local Storage and Session Storage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Local Storage and Session Storage Example</h1>
+
+    <!-- Input Fields -->
+    <input type="text" id="dataInput" placeholder="Enter some data">
+    
+    <!-- Buttons to trigger actions -->
+    <button onclick="saveToLocal()">Save to Local Storage</button>
+    <button onclick="saveToSession()">Save to Session Storage</button>
+    <button onclick="retrieveLocal()">Retrieve from Local Storage</button>
+    <button onclick="retrieveSession()">Retrieve from Session Storage</button>
+    <button onclick="clearLocal()">Clear Local Storage</button>
+    <button onclick="clearSession()">Clear Session Storage</button>
+
+    <!-- Output container for displaying stored data -->
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    // Function to save data to Local Storage
+    function saveToLocal() {
+      const data = document.getElementById('dataInput').value;
+      localStorage.setItem('myData', data);
+      document.getElementById('output').innerHTML = 'Data saved to Local Storage!';
+    }
+
+    // Function to save data to Session Storage
+    function saveToSession() {
+      const data = document.getElementById('dataInput').value;
+      sessionStorage.setItem('myData', data);
+      document.getElementById('output').innerHTML = 'Data saved to Session Storage!';
+    }
+
+    // Function to retrieve data from Local Storage
+    function retrieveLocal() {
+      const data = localStorage.getItem('myData');
+      if (data) {
+        document.getElementById('output').innerHTML = `Local Storage Data: ${data}`;
+      } else {
+        document.getElementById('output').innerHTML = 'No data found in Local Storage.';
+      }
+    }
+
+    // Function to retrieve data from Session Storage
+    function retrieveSession() {
+      const data = sessionStorage.getItem('myData');
+      if (data) {
+        document.getElementById('output').innerHTML = `Session Storage Data: ${data}`;
+      } else {
+        document.getElementById('output').innerHTML = 'No data found in Session Storage.';
+      }
+    }
+
+    // Function to clear Local Storage
+    function clearLocal() {
+      localStorage.removeItem('myData');
+      document.getElementById('output').innerHTML = 'Local Storage cleared!';
+    }
+
+    // Function to clear Session Storage
+    function clearSession() {
+      sessionStorage.removeItem('myData');
+      document.getElementById('output').innerHTML = 'Session Storage cleared!';
+    }
+  </script>
+
+</body>
+</html>

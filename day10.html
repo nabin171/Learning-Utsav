@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Utsav - Advanced Error Handling (try-catch)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Advanced Error Handling Example (try-catch)</h1>
+
+    <!-- Buttons to trigger different types of errors -->
+    <button onclick="triggerReferenceError()">Trigger Reference Error</button>
+    <button onclick="triggerTypeError()">Trigger Type Error</button>
+    <button onclick="triggerSyntaxError()">Trigger Syntax Error</button>
+
+    <!-- Output container for displaying error message -->
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    // Function to trigger a Reference Error and handle it
+    function triggerReferenceError() {
+      try {
+        // Intentionally causing a reference error (undefined variable)
+        let result = nonExistentFunction();
+      } catch (error) {
+        // Handling the error and displaying the message
+        document.getElementById('output').innerHTML = `
+          <strong>Reference Error Occurred:</strong> ${error.message}
+        `;
+      } finally {
+        document.getElementById('output').innerHTML += `<p>The 'finally' block is executed (Reference Error).</p>`;
+      }
+    }
+
+    // Function to trigger a Type Error and handle it
+    function triggerTypeError() {
+      try {
+        // Intentionally causing a type error (calling something that isn't a function)
+        let number = 10;
+        number();
+      } catch (error) {
+        // Handling the error and displaying the message
+        document.getElementById('output').innerHTML = `
+          <strong>Type Error Occurred:</strong> ${error.message}
+        `;
+      } finally {
+        document.getElementById('output').innerHTML += `<p>The 'finally' block is executed (Type Error).</p>`;
+      }
+    }
+
+    // Function to simulate a Syntax Error (cannot catch syntax errors directly in try-catch)
+    function triggerSyntaxError() {
+      try {
+        // Simulating a syntax error (eval can evaluate code strings)
+        eval('let a == 5');  // Should be 'let a = 5'
+      } catch (error) {
+        // Handling the error and displaying the message
+        document.getElementById('output').innerHTML = `
+          <strong>Syntax Error Occurred:</strong> ${error.message}
+        `;
+      } finally {
+        document.getElementById('output').innerHTML += `<p>The 'finally' block is executed (Syntax Error).</p>`;
+      }
+    }
+  </script>
+
+</body>
+</html>

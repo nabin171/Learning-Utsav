@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Utsav - JavaScript Timers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>JavaScript Timers Example</h1>
+
+    <!-- Button to start the timeout -->
+    <button id="startTimeout">Start Timeout (5 seconds)</button>
+
+    <!-- Button to start/stop the interval -->
+    <button id="startInterval">Start Interval (1 second)</button>
+    <button id="stopInterval" disabled>Stop Interval</button>
+
+    <!-- Output section -->
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    // Handle the timeout function
+    document.getElementById('startTimeout').addEventListener('click', function() {
+      document.getElementById('output').innerHTML = '<p>Waiting for timeout...</p>';
+
+      // setTimeout for 5 seconds (5000 milliseconds)
+      setTimeout(function() {
+        document.getElementById('output').innerHTML = '<p><strong>Timeout Completed!</strong> 5 seconds have passed.</p>';
+      }, 5000);
+    });
+
+    let intervalId;
+
+    // Handle starting the interval
+    document.getElementById('startInterval').addEventListener('click', function() {
+      document.getElementById('output').innerHTML = '<p>Interval started. Updating every 1 second...</p>';
+
+      // setInterval to update every 1 second
+      intervalId = setInterval(function() {
+        const date = new Date();
+        document.getElementById('output').innerHTML = `<p><strong>Current Time:</strong> ${date.toLocaleTimeString()}</p>`;
+      }, 1000);
+
+      // Enable stop button and disable start button
+      document.getElementById('stopInterval').disabled = false;
+      document.getElementById('startInterval').disabled = true;
+    });
+
+    // Handle stopping the interval
+    document.getElementById('stopInterval').addEventListener('click', function() {
+      clearInterval(intervalId);  // Clear the interval
+
+      document.getElementById('output').innerHTML = '<p>Interval stopped.</p>';
+      
+      // Enable start button and disable stop button
+      document.getElementById('startInterval').disabled = false;
+      document.getElementById('stopInterval').disabled = true;
+    });
+  </script>
+
+</body>
+</html>

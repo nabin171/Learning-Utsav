@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { RadioGroup, Radio, Checkbox } from "@nextui-org/radio";
 import Link from "next/link";
+import CustomNavbar from "../component/NavBar/page";
 const Register = () => {
   const registerUser = async (values) => {
     const { data } = await axios.post(
@@ -22,7 +23,7 @@ const Register = () => {
 
   return (
     <form onSubmit className="">
-  
+      <CustomNavbar></CustomNavbar>
 
       <div className="rounded-2xl container flex  hsl(var(--nextui-background) / 0.7) justify-center items-center min-h-screen  min-w-full shadow-lg ">
         <div className="box flex flex-col  gap-5 p-4 bg-gray-100 ">
@@ -50,9 +51,8 @@ const Register = () => {
               className="max-w-xs"
               id="email"
               name="email"
-  
             />
-        
+
             <Input
               isRequired
               type="username"
@@ -61,9 +61,8 @@ const Register = () => {
               className="max-w-xs"
               id="username"
               name="username"
-          
             />
-   
+
             <div>
               <Input
                 isRequired
@@ -73,9 +72,7 @@ const Register = () => {
                 placeholder="Create your password"
                 id="password"
                 name="password"
-              
               />
-      
             </div>
             <Input
               classNames="py-2"
@@ -86,9 +83,7 @@ const Register = () => {
               placeholder="Enter your password"
               id="confirmpassword"
               name="confirmpassword"
- 
             />
-      
           </div>
 
           <Select
@@ -120,9 +115,7 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <div>
-  
-      </div>
+      <div></div>
     </form>
   );
 };

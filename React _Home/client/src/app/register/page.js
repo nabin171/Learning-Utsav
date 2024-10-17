@@ -11,7 +11,8 @@ import {
 } from "@nextui-org/react";
 import { RadioGroup, Radio, Checkbox } from "@nextui-org/radio";
 import Link from "next/link";
-import CustomNavbar from "../component/NavBar/page";
+import CustomNavbar from "../Components/NavBar/page";
+import Footer from "../Components/Footer/page";
 const Register = () => {
   const registerUser = async (values) => {
     const { data } = await axios.post(
@@ -115,7 +116,11 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <div></div>
+     
+        <div className="footer pt-10">
+          <Footer></Footer>
+        </div>
+   
     </form>
   );
 };

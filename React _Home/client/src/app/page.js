@@ -2,17 +2,25 @@
 import React from "react";
 import { Badge, Avatar, Image, Button, Input, button } from "@nextui-org/react";
 import Link from "next/link";
+import CustomNavbar from "./Components/NavBar/page";
+import Footer from "./Components/Footer/page";
 
 
 const page = () => {
   return (
     <form className="flex flex-col  min-h-screen ">
+      <CustomNavbar></CustomNavbar>
       <div className=" rounded-2xl     container hsl(var(--nextui-background) / 0.7) flex justify-center items-center min-h-screen min-w-full shadow-lg      ">
         <div className="box flex flex-col  gap-5 p-4 bg-gray-200">
           <div className="flex justify-between">
-            <img src="/mylogo.png" width={90} height={30} className="rounded"></img>
+            <img
+              src="/mylogo.png"
+              width={90}
+              height={30}
+              className="rounded"
+            ></img>
             <h2 className=" pt-4 heading  text-3xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1">
-          Express Rides
+              Express Rides
             </h2>
           </div>
 
@@ -134,6 +142,9 @@ const page = () => {
             </span>
           </p>
         </div>
+      </div>
+      <div className="footer pt-10">
+        <Footer></Footer>
       </div>
     </form>
   );

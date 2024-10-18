@@ -1,153 +1,136 @@
 "use client";
-import React from "react";
-import { Badge, Avatar, Image, Button, Input, button } from "@nextui-org/react";
+
+import { IoBarChartSharp } from "react-icons/io5";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
+import React from "react";
+import { BsCashCoin } from "react-icons/bs";
+import { RxLightningBolt } from "react-icons/rx";
+import { FaArrowRight } from "react-icons/fa";
+import { Avatar } from "@nextui-org/react";
+import { IoMdSettings } from "react-icons/io";
+import { IoMdTime } from "react-icons/io";
+
+import { useRouter } from "next/navigation";
 import CustomNavbar from "./Components/NavBar/page";
 import Footer from "./Components/Footer/page";
 
-
-const page = () => {
+const homepage = () => {
+  const router = useRouter();
   return (
-    <form className="flex flex-col  min-h-screen ">
-      <CustomNavbar></CustomNavbar>
-      <div className=" rounded-2xl     container hsl(var(--nextui-background) / 0.7) flex justify-center items-center min-h-screen min-w-full shadow-lg      ">
-        <div className="box flex flex-col  gap-5 p-4 bg-gray-200">
-          <div className="flex justify-between">
-            <img
-              src="/mylogo.png"
-              width={90}
-              height={30}
-              className="rounded"
-            ></img>
-            <h2 className=" pt-4 heading  text-3xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1">
-              Express Rides
-            </h2>
-          </div>
+    <div className="relative ">
 
-          <p className="freetrial text-center text-black-100 ">
-            Let's get started with your 30 days free trial
-          </p>
-          <div className="flex flex-col gap-5 ">
-            <Input
-              isRequired
-              type="email"
-              label="Email"
-              placeholder="Enter your Email"
-              className="max-w-xs"
-              id="email"
-              name="email"
-            />
+<CustomNavbar></CustomNavbar>
+      <div className="flex pt-10 pl-20 ">
+        <div className="pic ">
+          <img src="/p2.webp" width={720} height={1000}></img>
+        </div>
 
-            <div>
-              <Input
-                isRequired
-                id="password"
-                name="password"
-                type="password"
-                label="Password"
-                className="max-w-xs"
-                placeholder="Enter your Password"
-              />
+        <div className=" w-1/2 flex flex-col justify-center align-middle items-center ">
+          <p className="text-5xl font-sans font-medium">Let's Ride</p>
+
+          <div className="flex  gap-4 pt-10 ">
+            <div className="bg-gray-800 rounded-xl">
+              <Button
+                as={Link}
+                className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1"
+                href="/register"
+                variant="flat"
+              >
+                Apply to drive
+              </Button>
+            </div>
+
+            <div className="bg-gray-800  rounded-xl">
+              <Button
+                as={Link}
+                className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1 "
+                href="/register"
+                variant="flat"
+              >
+                Sign up to drive
+              </Button>
             </div>
           </div>
-          <p className="forgetPassword text-center text-black-100">
-            Forgot Password?
+        </div>
+      </div>
+      <div className="flex pl-20 pt-28  ">
+        <div className="flex flex-col w-1/2 gap-4">
+          <p className="font-semibold">DRIVE WITH EXPRESS RIDES</p>
+          <p className="text-3xl font-bold">
+            Set your own hours. Earn on<br></br> your own terms.
           </p>
 
-          <div className="bg-gray-800 rounded-xl flex justify-center">
-            <Button
-              as={Link}
-              className=" text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1"
-              href="/dashboard"
-              variant="flat"
-            >
-              Login
-            </Button>
-          </div>
+          <div className="flex flex-col gap-8">
+            <div className="flex gap-2">
+              <p>
+                <BsCashCoin size={20} />
+              </p>
+              <div className="flex flex-col gap-2">
+                <p className="font-semibold">Reliable Earnings:</p>
+                <p className="text-gray-500">
+                  Make money, keep your tips, and cash out when you want.
+                </p>
+              </div>
+            </div>
 
-          <div class="relative flex py-1 items-center">
-            <div class="flex-grow border-t border-gray-400"></div>
-            <span class="flex-shrink mx-4 text-gray-400">OR</span>
-            <div class="flex-grow border-t border-gray-400"></div>
+            <div className="flex gap-2">
+              <p>
+                <IoMdTime size={20} />
+              </p>
+              <div className="flex flex-col gap-2">
+                <p className="font-semibold">A flexbile Schedule:</p>
+                <p className="text-gray-500">
+                  Be your own boss and drive whenever it works for you.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <p>
+                <RxLightningBolt size={20} />
+              </p>
+              <div className="flex flex-col gap-2">
+                <p className="font-semibold">Get paid instantly:</p>
+                <p className="text-gray-500">
+                  Cash out your earnings whenever you want.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-center">
+              <div className="bg-gray-800 rounded-xl">
+                <Button
+                  as={Link}
+                  className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1"
+                  href="/Driver"
+                  variant="flat"
+                >
+                  Apply to drive
+                </Button>
+              </div>
+              <div
+                onClick={() => router.push("https://www.instagram.com")}
+                className="flex gap-2 cursor-pointer"
+              >
+                <p className="font-semibold flex">How driver pay works </p>
+                <p>
+                  <FaArrowRight size={20} />{" "}
+                </p>
+              </div>
+            </div>
           </div>
-          <button className="bg white border  w-full rounded-xl mt-1 flex justify-center ">
-            <svg
-              className="mr-3 text-sm"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="30"
-              height="25"
-              viewBox="0 0 48 48"
-            >
-              <path
-                fill="#fbc02d"
-                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12	s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20	s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
-              ></path>
-              <path
-                fill="#e53935"
-                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039	l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
-              ></path>
-              <path
-                fill="#4caf50"
-                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36	c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
-              ></path>
-              <path
-                fill="#1565c0"
-                d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
-              ></path>
-            </svg>
-            Sign Up with Google
-          </button>
-          <button className="bg white border  w-full rounded-xl  flex justify-center ">
-            <svg
-              className="mr-3 text-sm"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="30"
-              height="25"
-              viewBox="0 0 48 48"
-            >
-              <path
-                fill="#ff5722"
-                d="M6 6H22V22H6z"
-                transform="rotate(-180 14 14)"
-              ></path>
-              <path
-                fill="#4caf50"
-                d="M26 6H42V22H26z"
-                transform="rotate(-180 34 14)"
-              ></path>
-              <path
-                fill="#ffc107"
-                d="M26 26H42V42H26z"
-                transform="rotate(-180 34 34)"
-              ></path>
-              <path
-                fill="#03a9f4"
-                d="M6 26H22V42H6z"
-                transform="rotate(-180 14 34)"
-              ></path>
-            </svg>
-            Sign Up with Microsoft
-          </button>
-          <p className="freetrial text-center text-black-100">
-            Don't have an account yet?{" "}
-            <span className="text-blue-600 underline ">
-              {" "}
-              <Link as={Button} href="/register">
-                Sign Up
-              </Link>
-            </span>
-          </p>
+        </div>
+        <div>
+          <img src="/r41.png" width={720} height={600}></img>
         </div>
       </div>
       <div className="footer pt-10">
-        <Footer></Footer>
+       <Footer></Footer>
       </div>
-    </form>
+    </div>
   );
 };
 
-export default page;
+export default homepage;

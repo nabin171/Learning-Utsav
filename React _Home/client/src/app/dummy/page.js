@@ -10,31 +10,48 @@ import { Button } from "@nextui-org/react";
 
 const Reactions = () => {
   let [isReactionDivOpen, setIsReactionDivOpen] = useState(false);
-  let [isLiked, setIsLiked] = useState(false);
-  let [isSmall,SetIsSmall]=useState(false);
+  let [isColor, setIsColor] = useState(false);
+
+  let [isSize, setIsSize] = useState(false);
   return (
     <div>
       {isReactionDivOpen && (
         <div className="bg-black p-2 m-2 shadow-lg border border-gray flex w-[15%] rounded-md">
           <AiFillLike
-            size={isSmall ? "40" : "80"}
-            color={isLiked ? "blue" : "red"}
-            onMouseOver={() => SetIsSmall(true)}
+            color={isColor ? "blue" : "red"}
+            size={isSize ? "40" : "80"}
+            onMouseOver={() => {
+              setIsColor(true);
+              setIsSize(false);
+            }}
+            onMouseLeave={() => {
+              setIsColor(false);
+              setIsSize(true);
+            }}
           />
-          <FaSadCry size={40} color="#ffcc33" />
-          <FaAngry size={40} color="#f64d52" />
-          <IoHappy size={40} color="#ffcc4d" />
+          <FaSadCry
+           
+            color={isColor ? "blue" : "red"}
+            size={isSize ? "40" : "80"}
+            onMouseOver={() => {
+              setIsColor(true);
+              setIsSize(false);
+            }}
+          
+          />
+          <FaAngry size={40} color="red" />
+          <IoHappy size={40} color="red" />
           <FaHeart size={40} color="red" />
         </div>
       )}
 
       <Button
         onMouseEnter={() => setIsReactionDivOpen(true)}
-        onClick={() => setIsLiked(true)}
         className=""
+        onClick={() => setIsColor(true)}
       >
         {" "}
-        <AiFillLike size={40} color={isLiked ? "blue" : "red"} /> Like
+        <AiFillLike size={40} color={isColor ? "blue" : "red"} /> Like
       </Button>
     </div>
   );

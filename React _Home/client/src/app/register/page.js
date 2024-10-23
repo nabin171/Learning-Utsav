@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+ import { useFormik } from "formik";
+ import * as Yup from "yup";
 import {
   Badge,
   Avatar,
@@ -14,16 +16,39 @@ import Link from "next/link";
 import CustomNavbar from "../Components/NavBar/page";
 import Footer from "../Components/Footer/page";
 const Register = () => {
-  const registerUser = async (values) => {
-    const { data } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/register`,
-      values
-    );
-    if (data) alert("registered successfully");
-  };
+
+ const signUpSchema = Yup.object().shape({
+   cpassword: Yup.string()
+     .min(2, "Too Short!")
+     .max(50, "Too Long!")
+     .required("Required"),
+   password: Yup.string()
+     .min(2, "Too Short!")
+     .max(50, "Too Long!")
+     .required("Required"),
+   userName: Yup.string()
+     .min(2, "Too Short!")
+     .max(50, "Too Long!")
+     .required("Required"),
+   email: Yup.string().email("Invalid email").required("Required"),
+ });
+  
+ 
+     const formik = useFormik({
+       initialValues: {
+         userName: "",
+         password: "",
+         cpassword: "",
+         email: "",
+       },
+       validationSchema: signUpSchema,
+       onSubmit: (values) => {
+         alert(JSON.stringify(values, null, 2));
+       },
+     });
 
   return (
-    <form onSubmit className="">
+    <form className="" onSubmit={formik.handleSubmit}>
       <CustomNavbar></CustomNavbar>
 
       <div className="rounded-2xl container flex  hsl(var(--nextui-background) / 0.7) justify-center items-center min-h-screen  min-w-full shadow-lg ">
@@ -52,18 +77,22 @@ const Register = () => {
               className="max-w-xs"
               id="email"
               name="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
-
+            {formik.errors.email}
             <Input
               isRequired
-              type="username"
-              label="Username"
+              type="userName"
+              label="UserName"
               placeholder="Enter your username"
               className="max-w-xs"
-              id="username"
-              name="username"
+              id="userName"
+              name="userName"
+              onChange={formik.handleChange}
+              value={formik.values.userName}
             />
-
+            {formik.errors.userName}
             <div>
               <Input
                 isRequired
@@ -73,7 +102,10 @@ const Register = () => {
                 placeholder="Create your password"
                 id="password"
                 name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
               />
+              {formik.errors.password}
             </div>
             <Input
               classNames="py-2"
@@ -82,9 +114,12 @@ const Register = () => {
               label="Confirm your Password"
               className="max-w-xs"
               placeholder="Enter your password"
-              id="confirmpassword"
-              name="confirmpassword"
+              id="cpassword"
+              name="cpassword"
+              onChange={formik.handleChange}
+              value={formik.values.cpassword}
             />
+            {formik.errors.cpassword}
           </div>
 
           <Select
@@ -116,11 +151,10 @@ const Register = () => {
           </p>
         </div>
       </div>
-     
-        <div className="footer pt-10">
-          <Footer></Footer>
-        </div>
-   
+
+      <div className="footer pt-10">
+        <Footer></Footer>
+      </div>
     </form>
   );
 };

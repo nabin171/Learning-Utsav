@@ -1,16 +1,36 @@
 "use client";
 import React from "react";
+ import { useFormik } from "formik";
+  import * as Yup from "yup";
 import { Badge, Avatar, Image, Button, Input, button } from "@nextui-org/react";
 import Link from "next/link";
-
-
 import CustomNavbar from "../Components/NavBar/page";
 import Footer from "../Components/Footer/page";
 
+const Login = () => {
 
-const page = () => {
+ const loginSchema = Yup.object().shape({
+   password: Yup.string()
+     .min(2, "Too Short!")
+     .max(50, "Too Long!")
+     .required("Required"),
+   email: Yup.string().email("Invalid email").required("Required"),
+ });
+     const formik = useFormik({
+       initialValues: {
+         password: "",
+         email: "",
+       },
+       validationSchema: loginSchema,
+       onSubmit: (values) => {
+         alert(JSON.stringify(values, null, 2));
+       },
+     });
   return (
-    <form className="flex flex-col  min-h-screen ">
+    <form
+      className="flex flex-col  min-h-screen "
+      onSubmit={formik.handleSubmit}
+    >
       <CustomNavbar></CustomNavbar>
       <div className=" rounded-2xl     container hsl(var(--nextui-background) / 0.7) flex justify-center items-center min-h-screen min-w-full shadow-lg      ">
         <div className="box flex flex-col  gap-5 p-4 bg-gray-200">
@@ -38,8 +58,10 @@ const page = () => {
               className="max-w-xs"
               id="email"
               name="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
-
+            {formik.errors.email}
             <div>
               <Input
                 isRequired
@@ -49,7 +71,10 @@ const page = () => {
                 label="Password"
                 className="max-w-xs"
                 placeholder="Enter your Password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
               />
+              {formik.errors.password}
             </div>
           </div>
           <p className="forgetPassword text-center text-black-100">
@@ -58,9 +83,8 @@ const page = () => {
 
           <div className="bg-gray-800 rounded-xl flex justify-center">
             <Button
-              as={Link}
+              type="submit"
               className=" text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500  to-blue-500 m-1"
-              href="/dashboard"
               variant="flat"
             >
               Login
@@ -146,10 +170,10 @@ const page = () => {
         </div>
       </div>
       <div>
-       <Footer></Footer>
+        <Footer></Footer>
       </div>
     </form>
   );
 };
 
-export default page;
+export default Login;

@@ -14,6 +14,7 @@ import { MdLanguage } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  
   const router = useRouter();
   return (
     <div className="flex flex-col bg-black">
